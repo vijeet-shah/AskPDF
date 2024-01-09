@@ -18,19 +18,15 @@ import { useResizeDetector } from "react-resize-detector";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 import { cn } from "@/app/lib/utils";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 import SimpleBar from "simplebar-react";
 import PdfFullscreen from "./PdfFullscreen";
 import { useToast } from "@/components/ui/use-toast";
@@ -164,6 +160,8 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           >
             <RotateCw className="h-4 w-4" />
           </Button>
+
+          <PdfFullscreen fileUrl={url} />
         </div>
       </div>
 
