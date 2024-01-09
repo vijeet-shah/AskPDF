@@ -1,5 +1,6 @@
 import ChatWrapper from "@/app/components/chat/ChatWrapper";
 import PdfRenderer from "@/app/components/PdfRenderer";
+import { getUserSubscriptionPlan } from "@/app/lib/stripe";
 import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/dist/server";
 import { notFound, redirect } from "next/navigation";
