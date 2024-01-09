@@ -88,7 +88,7 @@ export default function Home() {
               Start chatting in minutes
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              Chatting to your PDF files has never been easier than with Quill.
+              Chatting to your PDF files has never been easier than with AskPdf.
             </p>
           </div>
         </div>
@@ -131,7 +131,7 @@ export default function Home() {
                 Start asking questions
               </span>
               <span className="mt-2 text-zinc-700">
-                It&apos;s that simple. Try out Quill today - it really takes
+                It&apos;s that simple. Try out AskPdf today - it really takes
                 less than a minute.
               </span>
             </div>
