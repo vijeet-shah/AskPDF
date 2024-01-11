@@ -4,13 +4,12 @@ import Stripe from "stripe";
 import { PLANS } from "../config/stripe";
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
-  apiVersion: "2023-08-16",
   typescript: true,
 });
 
 export async function getUserSubscriptionPlan() {
   const { getUser } = getKindeServerSession();
-  const user = getUser();
+  const user = await getUser();
 
   if (!user.id) {
     return {
