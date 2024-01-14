@@ -15,9 +15,9 @@ AskPDF is a powerful SaaS platform designed for PDF analysis and question-answer
 
 ## Installation
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/AskPDF.git
-   ```
+```bash
+git clone https://github.com/your-username/AskPDF.git
+```
 
 2. Navigate to the project directory:
 ```bash
