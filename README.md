@@ -20,43 +20,43 @@ AskPDF is a powerful SaaS platform designed for PDF analysis and question-answer
    ```
 
 2. Navigate to the project directory:
-```bash
-cd AskPDF
-```
+   ```bash
+   cd AskPDF
+   ```
 
 3. Install dependencies:
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 4. Set up Prisma:
 ## Configure your database connection in prisma/schema.prisma & Run migrations:
-```bash
-npx prisma migrate dev
-```
+   ```bash
+   npx prisma migrate dev
+   ```
 5. Set up .env
-```bash
-KINDE_CLIENT_ID=
-KINDE_CLIENT_SECRET=
-KINDE_ISSUER_URL=
-KINDE_SITE_URL=
-KINDE_POST_LOGOUT_REDIRECT_URL=
-KINDE_POST_LOGIN_REDIRECT_URL=
-DATABASE_URL=
+   ```bash
+   KINDE_CLIENT_ID=
+   KINDE_CLIENT_SECRET=
+   KINDE_ISSUER_URL=
+   KINDE_SITE_URL=
+   KINDE_POST_LOGOUT_REDIRECT_URL=
+   KINDE_POST_LOGIN_REDIRECT_URL=
+   DATABASE_URL=
 
-UPLOADTHING_SECRET=
-UPLOADTHING_APP_ID=
+   UPLOADTHING_SECRET=
+   UPLOADTHING_APP_ID=
 
-PINECODE_API_KEY=
+   PINECODE_API_KEY=
 
-OPENAI_API_KEY=
-STRIPE_SECRET_KEY=
-STRIPE_WEBHOOK_SECRET=
-```
+   OPENAI_API_KEY=
+   STRIPE_SECRET_KEY=
+   STRIPE_WEBHOOK_SECRET=
+   ```
 6. Start the application:
-```bash
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 Contributions are welcome! Please check the Contributing Guidelines for more details.
 
 ## License
