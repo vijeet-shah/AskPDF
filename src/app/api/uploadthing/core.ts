@@ -1,24 +1,23 @@
-import { PLANS } from "@/app/config/stripe";
-import { getPineconeClient } from "@/app/lib/pinecone";
-import { getUserSubscriptionPlan } from "@/app/lib/stripe";
 import { db } from "@/db";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/dist/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
+import { QdrantVectorStore } from "langchain/vectorstores/qdrant";
+import { getQdrantClient } from "@/lib/qdrant";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { PineconeStore } from "langchain/vectorstores/pinecone";
-import { Pinecone } from "@pinecone-database/pinecone";
+import { getUserSubscriptionPlan } from "@/lib/stripe";
+import { PLANS } from "@/config/stripe";
 
 const f = createUploadthing();
 
 const middleware = async () => {
   const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const user = getUser();
 
   if (!user || !user.id) throw new Error("Unauthorized");
 
   const subscriptionPlan = await getUserSubscriptionPlan();
-
+  
   return { subscriptionPlan, userId: user.id };
 };
 
@@ -39,7 +38,9 @@ const onUploadComplete = async ({
     },
   });
 
-  if (isFileExist) return;
+  if (isFileExist) {
+    return
+  }
 
   const createdFile = await db.file.create({
     data: {
@@ -72,7 +73,10 @@ const onUploadComplete = async ({
     const isFreeExceeded =
       pagesAmt > PLANS.find((plan) => plan.name === "Free")!.pagesPerPdf;
 
-    if ((isSubscribed && isProExceeded) || (!isSubscribed && isFreeExceeded)) {
+    if (
+      (isSubscribed && isProExceeded) ||
+      (!isSubscribed && isFreeExceeded)
+    ) {
       await db.file.update({
         data: {
           uploadStatus: "FAILED",
@@ -83,20 +87,17 @@ const onUploadComplete = async ({
       });
     }
 
-    // vectorize and index entire document
-    // const pinecone = await getPineconeClient();
-    // const pineconeIndex = pinecone.Index("askpdf");
-
-    const pinecone = new Pinecone();
-    const pineconeIndex = pinecone.index("askpdf");
-
     const embeddings = new OpenAIEmbeddings({
       openAIApiKey: process.env.OPENAI_API_KEY,
-    });
+    })
+    console.log("EMBEDDINGS", embeddings)
+    const qdrantClient = getQdrantClient();
 
-    await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
-      pineconeIndex,
-      namespace: createdFile.id,
+    await QdrantVectorStore.fromDocuments(pageLevelDocs, embeddings, {
+      client: qdrantClient,
+      url: process.env.QDRANT_URL,
+      apiKey: process.env.QDRANT_API_KEY,
+      collectionName: `drop-doc-${file.key}`,
     });
 
     await db.file.update({
@@ -108,6 +109,7 @@ const onUploadComplete = async ({
       },
     });
   } catch (err) {
+    console.log(err)
     await db.file.update({
       data: {
         uploadStatus: "FAILED",
