@@ -2,10 +2,6 @@
 
 ## Overview
 
-AskPDF is a powerful SaaS platform designed for PDF analysis and question-answering. Leveraging cutting-edge technologies such as Next.js, Prisma, and trpc, it provides a seamless and efficient solution for extracting details from PDF documents.
-
-## Tech Stack
-
 - **Next.js:** A React framework for building efficient and scalable web applications.
 - **Prisma:** A modern database toolkit for Node.js and TypeScript, simplifying database access and management.
 - **trpc:** A TypeScript-first RPC (Remote Procedure Call) library, ensuring type safety across server and client communication.
@@ -45,6 +41,7 @@ npx prisma migrate dev
 ```
 
 5. Set up .env
+   > > > > > > > main
 
 ```bash
 KINDE_CLIENT_ID=
@@ -75,4 +72,5 @@ Contributions are welcome! Please check the Contributing Guidelines for more det
 
 ## License
 
-This project is licensed under the MIT License.
+> > > > > > > main
+> > > > > > > This project is licensed under the MIT License.
