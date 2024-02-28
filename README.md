@@ -34,14 +34,13 @@ npm install
 
 4. Set up Prisma:
 
-## Configure your database connection in prisma/schema.prisma & Run migrations:
+Configure your database connection in prisma/schema.prisma & Run migrations:
 
 ```bash
 npx prisma migrate dev
 ```
 
 5. Set up .env
-   > > > > > > > main
 
 ```bash
 KINDE_CLIENT_ID=
@@ -72,5 +71,4 @@ Contributions are welcome! Please check the Contributing Guidelines for more det
 
 ## License
 
-> > > > > > > main
-> > > > > > > This project is licensed under the MIT License.
+This project is licensed under the MIT License.
