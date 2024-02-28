@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/Avatar"; //could use shadcn-ui directly
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import Image from "next/image";
 import { Icons } from "./Icons";
 import Link from "next/link";
@@ -29,14 +29,16 @@ const UserAccountNav = async ({
 
   const capitalizeFirstLetters = (str: string | null) => {
     if (!str) return "";
-  
+
     const words = str.split(" ");
     if (words.length === 1) {
       // If there's only one word, capitalize its first letter
       return words[0].charAt(0).toUpperCase();
     } else {
       // If there are multiple words, capitalize the first letter of each of the first two words
-      return words[0].charAt(0).toUpperCase() + words[1].charAt(0).toUpperCase();
+      return (
+        words[0].charAt(0).toUpperCase() + words[1].charAt(0).toUpperCase()
+      );
     }
   };
 
@@ -101,9 +103,9 @@ const UserAccountNav = async ({
         <DropdownMenuSeparator />
 
         <DropdownMenuItem asChild className="overflow-hidden">
-        <Link href="/settings">
-              Account Settings <Settings className="h-4 w-4 ml-1.5" />
-            </Link>
+          <Link href="/settings">
+            Account Settings <Settings className="h-4 w-4 ml-1.5" />
+          </Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem className="cursor-pointer">
