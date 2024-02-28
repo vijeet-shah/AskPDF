@@ -29,6 +29,15 @@ const Navbar = () => {
             {!user ? (
               <>
                 <Link
+                  href="/aboutus"
+                  className={buttonVariants({
+                    variant: "ghost",
+                    size: "sm",
+                  })}
+                >
+                  About Us
+                </Link>
+                <Link
                   href="/pricing"
                   className={buttonVariants({
                     variant: "ghost",
